@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .my_container {
+    border-radius: 5px;
+    background-color: #ffd5d5;
+    border: 4px solid black;
+    padding: 20px;
+    width: 50%;
+    transform: translate(50%, 0%);
+  }
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    float: right;
+  }
+  .my_button {
+    background-color: #04aa6d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1%;
+  }
+  .my_button_resume {
+    background-color: #04aa6d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1%;
+    width: 80%;
+  }
+  .my_button_gender {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1%;
+  }
+  .button1 {
+    float: right;
+  }
+  input[type="submit"] {
+    background-color: #04aa6d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 1%;
+  }
+  .section1 {
+    display: none;
+  }
+  .section2 {
+    display: none;
+  }
+  .fruta {
+    display: none;
+  }
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  .my_button:hover,
+  .my_button_gender:hover,
+  .fruta:hover,
+  .my_button_resume:hover {
+    background-color: #45a049;
+    color: white;
+  }
+
+  .col-25 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+  }
+
+  .col-75 {
+    float: right;
+    width: 50%;
+    padding-right: 2%;
+    margin-top: 6px;
+  }
+
+  /* Clear floats after the columns */
+  .my_row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .button-group {
+    display: flex;
+    padding: 3%;
+  }
+  .buttons {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 50%;
+  }
+  .one-btn {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+  .member {
+    display: none;
+    width: auto;
+  }
+  .my_overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 2;
+  }
+  .overlay-container {
+    border: 4px solid black;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    align-items: center;
+  }
+  .over-response1 {
+    width: 30%;
+    height: 30%;
+    transform: translate(100%, 100%);
+    -ms-transform: translate(100%, 100%);
+  }
+  .over-response2 {
+    width: 30%;
+    height: 40%;
+    transform: translate(100%, 60%);
+    -ms-transform: translate(100%, 100%);
+  }
+  .my_text {
+    margin-top: 10%;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+  }
+  body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+  }
+  .mySlides {
+    display: none;
+  }
+  .mySlides div {
+    width: 100px;
+    height: 100px;
+  }
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 3%;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active,
+  .dot:hover {
+    background-color: #717171;
+  }
+
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev,
+    .next,
+    .text {
+      font-size: 11px;
+    }
+  }
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .my_container {
+      width: 100%;
+      transform: translate(0%, 0%);
+    }
+    label {
+      float: none;
+      display: inline-block;
+    }
+    .col-25,
+    .col-75 {
+      width: 100%;
+      margin-top: 0;
+    }
+    input[type="submit"] {
+      width: 100%;
+    }
+    .my_button {
+      width: 100%;
+    }
+    .over-response1,
+    .over-response2 {
+      width: 100%;
+      transform: translate(0%, 50%);
+    }
+  }
+</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="upc_logo_32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="upc_logo_16x16.png" />
+    <title>Trabajo Final - IA 1</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      #resultado {
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="px-4 py-2 my-2 text-center border-bottom">
+      <img
+        class="d-block mx-auto mb-2"
+        src="img/perro_triste.png"
+        alt=""
+        width="80"
+        height="80"
+      />
+      <h1 class="display-5 fw-bold">TRABAJO FINAL - GRUPO 1</h1>
+      <h2 class="display-5 fw-bold">Modelo de Red Neuronal en Python</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-0">Predicción de sobrepeso Tensorflow.js</p>
+      </div>
+    </div>
+    <br />
+    <div class="b-example-divider"></div>
+    <div style="width: 100%">
+      <div class="my_container">
+        <div class="member" id="selectGender">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div class="my_text">Seleccione su género.</div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button
+                    class="my_button_gender"
+                    id="btn_Hombre"
+                    onclick="maleSelect()"
+                  >
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/hombre.png"
+                      alt=""
+                      width="80"
+                      height="80"
+                    />
+                    Hombre
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button
+                    class="my_button_gender"
+                    id="btn_Mujer"
+                    onclick="femaleSelect()"
+                  >
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/mujer.png"
+                      alt=""
+                      width="80"
+                      height="80"
+                    />
+                    Mujer
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectAge">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="edadLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="edad">Edad</label>
+                </div>
+                <div class="col-75">
+                  <input
+                    type="number"
+                    id="edad"
+                    name="edad"
+                    placeholder="Your age.."
+                  />
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectWeight">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="pesoLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="peso">Peso</label>
+                </div>
+                <div class="col-75">
+                  <input
+                    type="number"
+                    id="peso"
+                    name="peso"
+                    placeholder="Your weight.."
+                  />
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectHeight">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="tallaLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="peso">Talla</label>
+                </div>
+                <div class="col-75">
+                  <input
+                    type="number"
+                    id="talla"
+                    name="talla"
+                    placeholder="Your height.."
+                  />
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectActivityVigor">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="vigorLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="actividad-vigorosa"
+                    >Frecuencia de actividad vigorosa (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="actividad-vigorosa" name="actividad-vigorosa">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="vigorLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button_gender">
+                    <div class="section1">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/pesas.png"
+                        alt=""
+                        width="80"
+                        height="80"
+                      />
+                      Weightlift >20Kg
+                    </div>
+                    <div class="section1">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/ciclismo_veloz.png"
+                        alt=""
+                        width="80"
+                        height="80"
+                      />
+                      Ciclismo veloz
+                    </div>
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button_gender">
+                    <div class="section2">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/correr.png"
+                        alt=""
+                        width="80"
+                        height="80"
+                      />
+                      Correr en pendientes
+                    </div>
+                    <div class="section2">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/natacion.png"
+                        alt=""
+                        width="80"
+                        height="80"
+                      />
+                      Natación veloz
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectActivityModer">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="moderLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="actividad-moderada"
+                    >Frecuencia de actividad moderada (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="actividad-moderada" name="actividad-moderada">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="moderLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button_gender">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/bailar.png"
+                      alt=""
+                      width="80"
+                      height="80"
+                    />
+                    Baile
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button_gender">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/caminata_rapida.png"
+                      alt=""
+                      width="80"
+                      height="80"
+                    />
+                    Caminata acelerada
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectActivityWalk">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="walkLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="actividad-caminata"
+                    >Frecuencia de caminata (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="actividad-caminata" name="actividad-caminata">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="walkLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button_gender">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/totorito.gif"
+                      alt=""
+                      width="300"
+                      height="189"
+                    />
+                    Caminata
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectAlimentosProcesados">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="procesadoLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="alimentos-procesados"
+                    >Frecuencia de consumo alimentos procesados (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="alimentos-procesados" name="alimentos-procesados">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="procesadoLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/alimentos_procesados.png"
+                      alt=""
+                      width="120"
+                      height="120"
+                    />
+                    Alimentos Procesados
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectAlimentosChatarra">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="chatarraLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="alimentos-chatarra"
+                    >Frecuencia de consumo alimentos chatarra (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="alimentos-chatarra" name="alimentos-chatarra">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="chatarraLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/alimento_chatarra.png"
+                      alt=""
+                      width="120"
+                      height="120"
+                    />
+                    Alimentos Chatarra
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectAlimentosFruta">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="frutaLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="alimentos-fruta"
+                    >Frecuencia de consumo de fruta (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="alimentos-fruta" name="alimentos-fruta">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="frutaLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button_gender">
+                    <div class="fruta">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/platano.png"
+                        alt=""
+                        width="120"
+                        height="120"
+                      />
+                      Platano 90cal
+                    </div>
+                    <div class="fruta">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/mandarina.png"
+                        alt=""
+                        width="120"
+                        height="120"
+                      />
+                      Mandarina 40cal
+                    </div>
+                    <div class="fruta">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/naranja.png"
+                        alt=""
+                        width="120"
+                        height="120"
+                      />
+                      Naranja 44cal
+                    </div>
+                    <div class="fruta">
+                      <img
+                        class="d-block mx-auto mb-2"
+                        src="img/piña.png"
+                        alt=""
+                        width="120"
+                        height="120"
+                      />
+                      Piña 51cal
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectAlimentosVerdura">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="verduraLabel"></span>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <label for="alimentos-verdura"
+                    >Frecuencia de consumo de verdura (Semana)</label
+                  >
+                </div>
+                <div class="col-75">
+                  <select id="alimentos-verdura" name="alimentos-verdura">
+                    <option value="0">Nunca</option>
+                    <option value="1">Casi Nunca</option>
+                    <option value="2">A veces</option>
+                    <option value="3">Frecuentemente</option>
+                    <option value="4">Siempre</option>
+                  </select>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="verduraLabel1"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button_gender">
+                    <img
+                      class="d-block mx-auto mb-2"
+                      src="img/verduras.png"
+                      alt=""
+                      width="150"
+                      height="150"
+                    />
+                    Verduras
+                  </button>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(-1)">
+                    Anterior
+                  </button>
+                </div>
+                <div class="buttons">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Siguiente
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="selectResume">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div style="text-align: center">
+                <span id="resumeLabel"
+                  >Resumen de sus respuestas<br />Dele Click a un botón para
+                  cambiar su respuesta</span
+                >
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(1)">
+                      Sexo
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_gender"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(2)">
+                      Edad
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_edad"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(3)">
+                      Peso
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_peso"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(4)">
+                      Talla
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_talla"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(5)">
+                      Actividad vigorosa
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_vigor"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(6)">
+                      Actividad moderada
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_moderada"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(7)">
+                      Caminata
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_caminata"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(8)">
+                      Comida procesada
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_procesada"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(9)">
+                      Comida Chatarra
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_chatarra"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(10)">
+                      Fruta
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_fruta"></span>
+                </div>
+              </div>
+              <div class="my_row">
+                <div class="col-25">
+                  <div class="one-btn">
+                    <button class="my_button_resume" onclick="currentSlide(11)">
+                      Verdura
+                    </button>
+                  </div>
+                </div>
+                <div class="col-75" style="padding: 12px 20px">
+                  <span id="result_verdura"></span>
+                </div>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Predecir
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="member" id="Predicted">
+          <div class="my_overlay">
+            <div class="overlay-container">
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button_gender">
+                    <img
+                      id="img-response"
+                      class="d-block mx-auto mb-2"
+                      src="img/perro_triste.png"
+                      alt=""
+                      width="80"
+                      height="80"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span id="resultado"></span>
+              </div>
+              <div class="button-group">
+                <div class="one-btn">
+                  <button class="my_button" onclick="plusSlides(1)">
+                    Realizar otra predicción
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"
+        ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+        <script type="text/javascript">
+          var modelo = null;
+          //Cargar modelo
+          (async () => {
+            console.log("Cargando modelo...");
+            modelo = await tf.loadLayersModel("model.json");
+            console.log("Modelo cargado...");
+          })();
+          let sectionIndex = 1;
+          let slideIndex = 1;
+          //edad
+          let hmin = 18;
+          let hmax = 59;
+          let mmin = 18;
+          let mmax = 59;
+          //peso
+          let hpmin = 41;
+          let hpmax = 126;
+          let mpmin = 33;
+          let mpmax = 128;
+          //talla
+          let htmin = 142;
+          let htmax = 186;
+          let mtmin = 132;
+          let mtmax = 173;
+          //variables
+          let gender = -1;
+          let edad = 0;
+          let peso = 0;
+          let talla = 0;
+          let act_vig;
+          let act_mod;
+          let act_cam;
+          let ali_proc;
+          let ali_chat;
+          let ali_frut;
+          let ali_ver;
+          showSlides(slideIndex);
+
+          function maleSelect() {
+            document.getElementById("btn_Hombre").style.backgroundColor =
+              "#45a049";
+            document.getElementById("btn_Hombre").style.color = "white";
+            document.getElementById("btn_Mujer").style.backgroundColor =
+              "#ffffff";
+            document.getElementById("btn_Mujer").style.color = "rgb(0, 0, 0)";
+            gender = 0;
+          }
+          function femaleSelect() {
+            document.getElementById("btn_Mujer").style.backgroundColor =
+              "#45a049";
+            document.getElementById("btn_Mujer").style.color = "white";
+            document.getElementById("btn_Hombre").style.backgroundColor =
+              "#ffffff";
+            document.getElementById("btn_Hombre").style.color = "rgb(0, 0, 0)";
+            gender = 1;
+          }
+
+          function plusSlides(n) {
+            if (slideIndex == 1 && gender == -1) {
+              return;
+            } else if (slideIndex == 2 && n > 0) {
+              if (
+                gender == 0 &&
+                (document.getElementById("edad").value < hmin ||
+                  document.getElementById("edad").value > hmax)
+              ) {
+                document.getElementById("edadLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  hmin +
+                  ";" +
+                  hmax +
+                  "]";
+                return;
+              } else if (
+                gender == 1 &&
+                (document.getElementById("edad").value < mmin ||
+                  document.getElementById("edad").value > mmax)
+              ) {
+                document.getElementById("edadLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  mmin +
+                  ";" +
+                  mmax +
+                  "]";
+
+                return;
+              }
+              edad = document.getElementById("edad").value;
+            } else if (slideIndex == 3 && n > 0) {
+              if (
+                gender == 0 &&
+                (document.getElementById("peso").value < hpmin ||
+                  document.getElementById("peso").value > hpmax)
+              ) {
+                document.getElementById("pesoLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  hpmin +
+                  ";" +
+                  hpmax +
+                  "]";
+                return;
+              } else if (
+                gender == 1 &&
+                (document.getElementById("peso").value < mpmin ||
+                  document.getElementById("peso").value > mpmax)
+              ) {
+                document.getElementById("pesoLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  mpmin +
+                  ";" +
+                  mpmax +
+                  "]";
+
+                return;
+              }
+              peso = document.getElementById("peso").value;
+            } else if (slideIndex == 4 && n > 0) {
+              if (
+                gender == 0 &&
+                (document.getElementById("talla").value < htmin ||
+                  document.getElementById("talla").value > htmax)
+              ) {
+                document.getElementById("tallaLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  htmin +
+                  ";" +
+                  htmax +
+                  "]";
+                return;
+              } else if (
+                gender == 1 &&
+                (document.getElementById("talla").value < mtmin ||
+                  document.getElementById("talla").value > mtmax)
+              ) {
+                document.getElementById("tallaLabel").innerHTML =
+                  "SE LE RECOMIENDA USAR VALORES\n" +
+                  "ENTRE [" +
+                  mtmin +
+                  ";" +
+                  mtmax +
+                  "]";
+
+                return;
+              }
+              talla = document.getElementById("talla").value;
+            } else if (slideIndex == 5 && n > 0) {
+              act_vig = document.getElementById("actividad-vigorosa").value;
+              console.log(act_vig);
+            } else if (slideIndex == 6 && n > 0) {
+              act_mod = document.getElementById("actividad-moderada").value;
+            } else if (slideIndex == 7 && n > 0) {
+              act_cam = document.getElementById("actividad-caminata").value;
+            } else if (slideIndex == 8 && n > 0) {
+              ali_proc = document.getElementById("alimentos-procesados").value;
+            } else if (slideIndex == 9 && n > 0) {
+              ali_chat = document.getElementById("alimentos-chatarra").value;
+            } else if (slideIndex == 10 && n > 0) {
+              ali_frut = document.getElementById("alimentos-fruta").value;
+            } else if (slideIndex == 11 && n > 0) {
+              ali_ver = document.getElementById("alimentos-verdura").value;
+            }
+            showSlides((slideIndex += n));
+          }
+
+          function currentSlide(n) {
+            showSlides((slideIndex = n));
+          }
+
+          function resetAll() {
+            slideIndex = 1;
+            gender = -1;
+            edad = 0;
+            peso = 0;
+            talla = 0;
+            document.getElementById("btn_Hombre").style.backgroundColor =
+              "#ffffff";
+            document.getElementById("btn_Hombre").style.color = "rgb(0, 0, 0)";
+            document.getElementById("btn_Mujer").style.backgroundColor =
+              "#ffffff";
+            document.getElementById("btn_Mujer").style.color = "rgb(0, 0, 0)";
+            document.getElementById("edad").value = "";
+            document.getElementById("peso").value = "";
+            document.getElementById("talla").value = "";
+            document.getElementById("actividad-vigorosa").value = 0;
+            document.getElementById("actividad-moderada").value = 0;
+            document.getElementById("actividad-caminata").value = 0;
+            document.getElementById("alimentos-procesados").value = 0;
+            document.getElementById("alimentos-chatarra").value = 0;
+            document.getElementById("alimentos-verdura").value = 0;
+          }
+          function carrousel() {
+            if (slideIndex == 5) {
+              var i;
+              var x = document.getElementsByClassName("section1");
+              var y = document.getElementsByClassName("section2");
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+              }
+              for (i = 0; i < y.length; i++) {
+                y[i].style.display = "none";
+              }
+              sectionIndex++;
+              if (sectionIndex > x.length) {
+                sectionIndex = 1;
+              }
+              x[sectionIndex - 1].style.display = "block";
+              y[sectionIndex - 1].style.display = "block";
+              setTimeout(carrousel, 2000);
+            } else if (slideIndex == 10) {
+              var i;
+              var x = document.getElementsByClassName("fruta");
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+              }
+              sectionIndex++;
+              if (sectionIndex > x.length) {
+                sectionIndex = 1;
+              }
+              x[sectionIndex - 1].style.display = "block";
+              setTimeout(carrousel, 2000);
+            }
+          }
+          function get_etiqueta(n) {
+            let s = "";
+            if (n == 0) {
+              s = "Nunca";
+            } else if (n == 1) {
+              s = "Casi nunca";
+            } else if (n == 2) {
+              s = "A veces";
+            } else if (n == 3) {
+              s = "Frecuentemente";
+            } else {
+              s = "Siempre";
+            }
+            return s;
+          }
+
+          function precedir_obesidad() {
+            if (true) {
+              var arr = [
+                gender, //sexo
+                edad, //edad
+                peso, //img=
+                talla, //talla
+                act_vig, //actividad vigorosa
+                act_mod, //actividad moderada
+                act_cam, //caminata
+                0, //frecuencia alcohol (not required)
+                ali_proc, //frecuencia procesados
+                ali_chat, //frecuencia chatarra
+                0, //frecuencia sal (not required)
+                ali_frut, //frecuencia fruta
+                ali_ver, //frecuencia verdura
+              ];
+              arr = [arr];
+              if (modelo != null) {
+                var tensor = tf.tensor2d(arr);
+                var prediccion = Number(modelo.predict(tensor).dataSync());
+                prediccion = prediccion * 100;
+                var pred_2dec = prediccion.toFixed(2);
+                if (prediccion > 70) {
+                  document.getElementById("img-response").src =
+                    "perro_triste.png";
+                } else if (prediccion > 40) {
+                  document.getElementById("img-response").src =
+                    "img/perro_sultan.jpg";
+                } else {
+                  document.getElementById("img-response").src = "img/gato.PNG";
+                }
+                document.getElementById("resultado").innerHTML =
+                  "Usted tiene una probabilidad de \n" +
+                  pred_2dec +
+                  "% de tener sobrepeso.";
+                document.getElementById("Predicted").style.display = "block";
+              } else {
+                document.getElementById("resultado").innerHTML =
+                  "Intenta de nuevo en un momento...";
+                document.getElementById("Predicted").style.display = "block";
+              }
+            }
+          }
+
+          function showSlides(n) {
+            if (slideIndex == 2) {
+              if (gender == 0) {
+                document.getElementById("edadLabel").innerHTML =
+                  "Debido al rango de edades del conjunto de datos\n" +
+                  "de los hombres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  hmin +
+                  ";" +
+                  hmax +
+                  "].";
+              } else {
+                document.getElementById("edadLabel").innerHTML =
+                  "Debido al rango de edades del conjunto de datos\n" +
+                  "de las mujeres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  mmin +
+                  ";" +
+                  mmax +
+                  "].";
+              }
+            } else if (slideIndex == 3) {
+              if (gender == 0) {
+                document.getElementById("pesoLabel").innerHTML =
+                  "Debido al rango de pesos del conjunto de datos\n" +
+                  "de los hombres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  hpmin +
+                  ";" +
+                  hpmax +
+                  "].";
+              } else {
+                document.getElementById("pesoLabel").innerHTML =
+                  "Debido al rango de pesos del conjunto de datos\n" +
+                  "de las mujeres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  mpmin +
+                  ";" +
+                  mpmax +
+                  "].";
+              }
+            } else if (slideIndex == 4) {
+              if (gender == 0) {
+                document.getElementById("tallaLabel").innerHTML =
+                  "Debido al rango de tallas del conjunto de datos\n" +
+                  "de los hombres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  htmin +
+                  ";" +
+                  htmax +
+                  "].";
+              } else {
+                document.getElementById("tallaLabel").innerHTML =
+                  "Debido al rango de talla del conjunto de datos\n" +
+                  "de las mujeres, para una mayor precisión\n" +
+                  "se recomienda usar un rango entre [" +
+                  mtmin +
+                  ";" +
+                  mtmax +
+                  "].";
+              }
+            } else if (slideIndex == 5) {
+              document.getElementById("vigorLabel").innerHTML =
+                "La actividad física de intensidad vigorosa te hace\n" +
+                "respirar fuerte y rápido. Si estás trabajando a\n" +
+                "dicho nivel, no podrás entablar una conversación\n" +
+                "sin antes detenerte para respirar, así lo indica\n" +
+                "el Sistema Nacional de Salud del Reino Unido (NHS)";
+              document.getElementById("vigorLabel1").innerHTML =
+                "Entre algunos ejemplos tenemos:\n";
+            } else if (slideIndex == 6) {
+              document.getElementById("moderLabel").innerHTML =
+                "La actividad física de intensidad moderada acelera\n" +
+                "de forma perceptible el ritmo cardíaco, pero\n" +
+                "habitualmente se puede mantener una conversación";
+              document.getElementById("moderLabel1").innerHTML =
+                "Entre algunos ejemplos tenemos:\n";
+            } else if (slideIndex == 8) {
+              document.getElementById("procesadoLabel").innerHTML =
+                "Un estudio publicado en la revista Cell Metabolism\n" +
+                "indicó que durante dos semanas comiendo alimentos \n" +
+                "procesados las personas en el estudio consumieron 508\n" +
+                "calorías más al día y ganaron un kilo.";
+            } else if (slideIndex == 9) {
+              document.getElementById("chatarraLabel").innerHTML =
+                "Según la nutricionista Rosa Salvarrieta, la comida\n" +
+                "chatarra puede llegar hasta las 1500 calorías,\n" +
+                "cubriendo casi un 75% de las calorías necesarias \n" +
+                "al día para mantener un estado saludable.";
+            } else if (slideIndex == 10) {
+              document.getElementById("frutaLabel").innerHTML =
+                "Según la encuesta nacional de hogares (2019, Perú), \n" +
+                "la fruta más demandada por los peruanos es \n" +
+                "el plátano que concentró el 55% del total; seguido \n" +
+                "de mandarina 16%, naranja 13%, piña 6%.";
+              document.getElementById("frutaLabel1").innerHTML =
+                "Para el entrenamiento se asumió  \n" +
+                "un conjunto calórico promedio.";
+            } else if (slideIndex == 11) {
+              document.getElementById("verduraLabel").innerHTML =
+                "Para el caso de verduras, durante el 2018, las verduras \n" +
+                "más demandadas fueron: cebollas, ajos, col, coliflor, \n" +
+                "pepino, berenjena, frijoles, zanahoria, entre otros.";
+              document.getElementById("verduraLabel1").innerHTML =
+                "Para el entrenamiento se asumió  \n" +
+                "un conjunto calórico promedio.";
+            } else if (slideIndex == 12) {
+              if (gender == 0) {
+                document.getElementById("result_gender").innerHTML = "Hombre";
+              } else
+                document.getElementById("result_gender").innerHTML = "Mujer";
+              document.getElementById("result_edad").innerHTML = edad;
+              document.getElementById("result_peso").innerHTML = peso;
+              document.getElementById("result_talla").innerHTML = talla;
+              document.getElementById("result_vigor").innerHTML =
+                get_etiqueta(act_vig);
+              document.getElementById("result_moderada").innerHTML =
+                get_etiqueta(act_mod);
+              document.getElementById("result_caminata").innerHTML =
+                get_etiqueta(act_cam);
+              document.getElementById("result_procesada").innerHTML =
+                get_etiqueta(ali_proc);
+              document.getElementById("result_chatarra").innerHTML =
+                get_etiqueta(ali_chat);
+              document.getElementById("result_fruta").innerHTML =
+                get_etiqueta(ali_frut);
+              document.getElementById("result_verdura").innerHTML =
+                get_etiqueta(ali_ver);
+            } else if (slideIndex == 13) {
+              precedir_obesidad();
+            }
+            let i;
+            let slides = document.getElementsByClassName("member");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+              resetAll();
+            }
+            if (n < 1) {
+              slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+            if (slideIndex == 5 || slideIndex == 10) {
+              carrousel();
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
